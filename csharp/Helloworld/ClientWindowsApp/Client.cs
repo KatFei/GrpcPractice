@@ -22,17 +22,21 @@ using System.Threading.Tasks;
   using System;
   using Grpc.Core;
   using Helloworld;
+using System.ServiceModel.Syndication;
 
-  namespace RssClient
+namespace RssClient
   {
-    class ClientMain
+    public class ClientMain
     {
-      Channel channel;
-      Greeter.GreeterClient client;
-      String user;
-      public event EventHandler<string> NewsRecieved;
+        Channel channel;
+        Greeter.GreeterClient client;
+        String user;
+        private String username = " ";
+        private String authtoken;
+        //public event EventHandler<string> NewsRecieved;
+        public event EventHandler<NewsReply> NewsRecieved;
 
-      public ClientMain()
+        public ClientMain()
       {
         channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
 
@@ -70,10 +74,20 @@ using System.Threading.Tasks;
       //        Console.WriteLine("Press any key to exit...");
       //        Console.ReadKey();
       //    }
+      public bool Authenticate(string username, string password) {
+            var authReply = client.AuthenticateUser(new AuthRequest { Username = username, Password = password });
+            if(authReply.Checkresult == "true")
+            {
+                this.username = this.user = username;
+                authtoken = authReply.Authtoken;
+                return true;
+            }
+            return false;
+        }
       public void GetNews()
       {
         var newsReply = client.FindNews(new NewsRequest { Username = user, Url = "http://domiksolnechnoykoshki.blogspot.com/rss.xml" });
-        NewsRecieved(this, newsReply.Summary);
+        NewsRecieved(this, newsReply);
       }
       public void CloseClient()
       {
@@ -82,6 +96,10 @@ using System.Threading.Tasks;
         Console.WriteLine("Press any key to exit...");
         Console.ReadKey();
       }
+        public static SyndicationItem FromGrpcNewsItem(NewsReply newsReply)
+        {
+            return new SyndicationItem(newsReply.Subject, newsReply.Summary, new Uri(newsReply.Url), newsReply.Id, DateTime.Parse(newsReply.Date));
+        }
     }
 
 

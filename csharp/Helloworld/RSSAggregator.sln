@@ -14,6 +14,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RssClientMainWindow", "Clie
 		{13B6DFC8-F5F6-4CC2-99DF-57A7CF042033} = {13B6DFC8-F5F6-4CC2-99DF-57A7CF042033}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "Library\Library.csproj", "{4FF6CAF2-BEEF-4F20-B73D-54CD1812FFF7}"
+	ProjectSection(ProjectDependencies) = postProject
+		{13B6DFC8-F5F6-4CC2-99DF-57A7CF042033} = {13B6DFC8-F5F6-4CC2-99DF-57A7CF042033}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +41,10 @@ Global
 		{D8B38387-017F-4836-B791-EF1DC354BEB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8B38387-017F-4836-B791-EF1DC354BEB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8B38387-017F-4836-B791-EF1DC354BEB6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FF6CAF2-BEEF-4F20-B73D-54CD1812FFF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FF6CAF2-BEEF-4F20-B73D-54CD1812FFF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FF6CAF2-BEEF-4F20-B73D-54CD1812FFF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FF6CAF2-BEEF-4F20-B73D-54CD1812FFF7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

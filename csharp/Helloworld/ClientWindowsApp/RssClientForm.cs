@@ -1,38 +1,65 @@
-﻿using System;
+﻿using Helloworld;
+using System;
 using System.Windows.Forms;
 
+//using LoginForm;
 
 namespace ClientWindowsApp
 {
-  public partial class RssClientForm : Form
-  {
-    RssClient.ClientMain client;
-    private bool Resizing = false;
-    public RssClientForm()
+    public partial class RssClientForm : Form
     {
-      InitializeComponent();
-      client = new RssClient.ClientMain();
-      client.NewsRecieved += new EventHandler<string>(OnNewsRecieved);
-      //listNews.Columns.Clear();
-      //listNews.Items.Clear();
-      //listNews.View = View.Details;
-      
-      //listNews.Columns.Add("Latest News");
-      //listNews.Columns[0].Width = listNews.Width - 2;
-    }
+        RssClient.ClientMain client;
+        private bool Resizing = false;
+        public RssClientForm()
+        {
+            InitializeComponent();
+            client = new RssClient.ClientMain();
+            client.NewsRecieved += new EventHandler<NewsReply>(OnNewsRecieved);  //new EventHandler<string>(OnNewsRecieved);
+            //listNews.Columns.Clear();
+            //listNews.Items.Clear();
+            //listNews.View = View.Details;
 
-    private void butLoad_Click(object sender, EventArgs e)
-    {
-      client.GetNews();
-    }
+            //listNews.Columns.Add("Latest News");
+            //listNews.Columns[0].Width = listNews.Width - 2;
 
-    private void OnNewsRecieved(object sender, string e)
-    {
-      listNews.Items.Add(new ListViewItem(new string[] { "FIRST" }));
-      webBrowser1.DocumentText = e;
-    }
+            //listNews.Items.Add(new ListViewItem(new string[] { " " }));
+            //listNews.Items.Clear();
+        }
 
-    private void listNews_SelectedIndexChanged(object sender, EventArgs e)
+        private void butLoad_Click(object sender, EventArgs e)
+        {
+            client.GetNews();
+        }
+        private void OnNewsRecieved(object sender, string e)
+        {
+            //html format
+            //String.Format(e);
+            listNews.Items.Add(new ListViewItem(new string[] { String.Format(e) }));
+            webBrowser1.DocumentText = e;
+            //webBrowser1.Navigate();
+        }
+        private void OnNewsRecieved(object sender, NewsReply e)
+        {
+            //html format
+            //String.Format(e);
+            //listNews.Items.Add(new ListViewItem(new string[] { String.Format(e) }));
+            Label lblTemp = new Label();
+            lblTemp.Text = e.Subject;
+            Label lblTempS = new Label();
+            lblTemp.Text = e.Summary;
+            LinkLabel lblTempL = new LinkLabel();
+            lblTemp.Text = e.Url;
+            FlowLayoutPanel flTmp = new FlowLayoutPanel();
+            flTmp.FlowDirection = FlowDirection.TopDown;
+            flTmp.Controls.Add(lblTemp);
+            flTmp.Controls.Add(lblTempS);
+            flTmp.Controls.Add(lblTempL);
+            listNews.Controls.Add(flTmp);
+            ///webBrowser1.DocumentText = e;
+            webBrowser1.Navigate(e.Url);
+        }
+
+        private void listNews_SelectedIndexChanged(object sender, EventArgs e)
     {
       if (listNews.SelectedItems.Count > 0)
       {
@@ -40,10 +67,17 @@ namespace ClientWindowsApp
         webBrowser1.DocumentText = item.Text;
       }
     }
+        private void listNews_Add(object sender, EventArgs e)
+        {
+            //create label
+            //create linklabel
+            //create label/text field unchangable
+            //add to listview
+        }
 
 
 
-    private void ListView_SizeChanged(object sender, EventArgs e)
+        private void ListView_SizeChanged(object sender, EventArgs e)
     {
       // Don't allow overlapping of SizeChanged calls
       if (!Resizing)
@@ -74,5 +108,18 @@ namespace ClientWindowsApp
       // Clear the resizing flag
       Resizing = false;
     }
-  }
+
+        private void butLogin_Click(object sender, EventArgs e)
+        {
+            LoginForm loginForm = new LoginForm();
+            loginForm.Client = this.client;
+            loginForm.ShowDialog();
+            if (loginForm.DialogResult == DialogResult.OK)
+            {
+                lblUsername.Text = loginForm.Username;
+                //load settings
+                //load rss feed
+            }
+        }
+    }
 }

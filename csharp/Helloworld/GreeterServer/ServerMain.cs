@@ -19,11 +19,36 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Helloworld;
 using System.Linq;
+using RssServer;
+using System.Collections.Generic;
 
 namespace GreeterServer
 {
     class GreeterImpl : Greeter.GreeterBase
     {
+        public NewsReply ConvertToRssItem(SyndicationItem item)
+        {
+            String url = " ";
+            try
+            {
+                if (item.BaseUri == null)
+                {
+                    url = item.Links[0].Uri.ToString();
+                }
+                else { url = item.BaseUri.ToString(); }
+            }
+            catch { }
+            NewsReply newsReply = new NewsReply
+            {
+                Subject = item.Title.Text,
+                Summary = item.Summary.Text,
+                Url = url,
+                Date = item.PublishDate.DateTime.ToString(),
+                Id = item.Id
+            };
+
+            return newsReply;
+        }
         // Server side handler of the SayHello RPC
         public override Task<HelloReply> SayHello(HelloRequest request, ServerCallContext context)
         {
@@ -33,10 +58,20 @@ namespace GreeterServer
         {
             return Task.FromResult(new HelloReply { Message = "Hello again " + request.Name });
         }
-    public override Task<NewsReply> FindNews(NewsRequest request, ServerCallContext context)
-    {
-      return Task.FromResult(new NewsReply { Subject = "Hello " + request.Username, Summary =  RSSReader.ReadFeed(request.Url)});
-    }
+        public override Task<AuthReply> AuthenticateUser(AuthRequest request, ServerCallContext context)
+        {
+            // . Connect
+            // .DataTable è ò.ï.
+            // DataBase. Authenticate
+            return Task.FromResult(new AuthReply { Checkresult = "true",  Authtoken = "Authtoken" });// base.AuthenticateUser(request, context);
+            }
+        public override Task<NewsReply> FindNews(NewsRequest request, ServerCallContext context)
+        {
+            //streaming
+            return Task.FromResult(ConvertToRssItem(RSSReader.ReadFeed2(request.Url)[0]));
+        }
+
+
     }
 
     class RSSReader
@@ -69,11 +104,41 @@ namespace GreeterServer
       }
       return summ;
     }
+        public static List<SyndicationItem> ReadFeed2(string url)
+        {
+            XmlReader reader = XmlReader.Create(url);
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            List<SyndicationItem> customfeed = new List<SyndicationItem>();
+            reader.Close();
+            String summ = " ";
+            try
+            {
+                //summ = feed.Items.First().Summary.Text;
+
+
+                foreach (SyndicationItem item in feed.Items)
+                {
+                    String subject = item.Title.Text;
+                    Console.WriteLine(subject);
+                    String summary = item.Summary.Text;
+                    Console.WriteLine(summary + "\n");
+
+
+                    if (summary != null)
+                        customfeed.Add(item);
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Error while reading RSS-feed");
+            }
+            return customfeed;
+        }
     }
     class ServerMain
     {
         const int Port = 50051;
-
+        static DataBase db;
         public static void Main(string[] args)
         {
             Server server = new Server
