@@ -36,16 +36,35 @@ namespace ClientWindowsApp
         private void butLogin_Click(object sender, EventArgs e)
         {
             String user = tbUser.Text;
+            if (user != "")
+            {
+                String pwd = tbPassword.Text;
+                //связываемся с сервером
+                if (client.Authenticate(user, pwd))
+                {
+                    this.DialogResult = DialogResult.OK;//возвращаем из формы ok иначе fail ;
+                    this.Username = user;
+                    this.Close();
+                }
+                else
+                    MessageBox.Show("Incorrent username or password.");
+            }
+        }
+
+        private void linkLblCreate_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            String user = tbUser.Text;
             String pwd = tbPassword.Text;
             //связываемся с сервером
-            if (client.Authenticate(user, pwd))
+            if ((user != "") && (pwd != ""))
             {
-                this.DialogResult = DialogResult.OK;//возвращаем из формы ok иначе fail ;
-                this.Username = user;
-                this.Close();
+                if (client.CreateUser(user, pwd) != null)
+                {
+                    MessageBox.Show("User created. Click Login button to log into your account.");
+                }
             }
             else
-                MessageBox.Show("Incorrent username or password.");
+                MessageBox.Show("Empty username or password.");
         }
     }
 }

@@ -16,64 +16,65 @@ using System;
 using Grpc.Core;
 using Helloworld;
 
-namespace RssClient 
+namespace RssClient
 {
     class ClientMain
     {
         static Channel channel;
-        static Greeter.GreeterClient client;
+        static GrpcRssReader.GrpcRssReaderClient client;
         static String user;
+        static String userid;
         public event EventHandler<string> NewsRecieved;
 
         public ClientMain()
         {
-          channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
+            channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
 
-          client = new Greeter.GreeterClient(channel);
-          user = "Kate";
+            client = new GrpcRssReader.GrpcRssReaderClient(channel);
+            user = "Kate";
 
-          var reply = client.SayHello(new HelloRequest { Name = user });
-          Console.WriteLine("Greeting: " + reply.Message);
+            var reply = client.SayHello(new HelloRequest { Name = user });
+            Console.WriteLine("Greeting: " + reply.Message);
 
-          var secondReply = client.SayHelloAgain(new HelloRequest { Name = user });
-          Console.WriteLine("Greeting: " + secondReply.Message);
+            var secondReply = client.SayHelloAgain(new HelloRequest { Name = user });
+            Console.WriteLine("Greeting: " + secondReply.Message);
 
 
-          //var newsReply = client.FindNews(new NewsRequest { Username = user, Url = "http://domiksolnechnoykoshki.blogspot.com/rss.xml" });
-          //Console.WriteLine("\n" + newsReply.Summary);
+            //var newsReply = client.FindNews(new NewsRequest { Username = user, Url = "http://domiksolnechnoykoshki.blogspot.com/rss.xml" });
+            //Console.WriteLine("\n" + newsReply.Summary);
 
         }
-    //public static void Main(string[] args)
-    //    {
-    //        channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
-      
-    //        client = new Greeter.GreeterClient(channel);
-    //        user = "Kate";
-      
-    //        var reply = client.SayHello(new HelloRequest { Name = user });
-    //        Console.WriteLine("Greeting: " + reply.Message);
+        //public static void Main(string[] args)
+        //    {
+        //        channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
 
-    //        var secondReply = client.SayHelloAgain(new HelloRequest { Name = user });
-    //        Console.WriteLine("Greeting: " + secondReply.Message);
+        //        client = new Greeter.GreeterClient(channel);
+        //        user = "Kate";
 
-    //  var newsReply = client.FindNews(new NewsRequest { Username = user, Url = "http://domiksolnechnoykoshki.blogspot.com/rss.xml" });
-    //  Console.WriteLine("\n" + newsReply.Summary);
+        //        var reply = client.SayHello(new HelloRequest { Name = user });
+        //        Console.WriteLine("Greeting: " + reply.Message);
 
-    //  channel.ShutdownAsync().Wait();
-    //        Console.WriteLine("Press any key to exit...");
-    //        Console.ReadKey();
-    //    }
-        public void GetNews()
-        {
-            var newsReply = client.FindNews(new NewsRequest { Username = user, Url = "http://domiksolnechnoykoshki.blogspot.com/rss.xml" });
-            NewsRecieved(this, newsReply.Summary);
-        }
+        //        var secondReply = client.SayHelloAgain(new HelloRequest { Name = user });
+        //        Console.WriteLine("Greeting: " + secondReply.Message);
+
+        //  var newsReply = client.FindNews(new NewsRequest { Username = user, Url = "http://domiksolnechnoykoshki.blogspot.com/rss.xml" });
+        //  Console.WriteLine("\n" + newsReply.Summary);
+
+        //  channel.ShutdownAsync().Wait();
+        //        Console.WriteLine("Press any key to exit...");
+        //        Console.ReadKey();
+        //    }
+        //public void GetNews()
+        //{
+        //    var newsReply = client.FindNews(new NewsRequest { Userid = userid, Url = "http://domiksolnechnoykoshki.blogspot.com/rss.xml" });
+        //    NewsRecieved(this, newsReply.Summary);
+        //}
         public void CloseClient()
         {
 
-      channel.ShutdownAsync().Wait();
-      Console.WriteLine("Press any key to exit...");
-      Console.ReadKey();
+            channel.ShutdownAsync().Wait();
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
+        }
     }
-    }
-}      
+}

@@ -81,6 +81,24 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="NewsFeedItemBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewsFeedItemBox.Designer.cs">
+      <DependentUpon>NewsFeedItemBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewsFeedItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewsFeedItem.Designer.cs">
+      <DependentUpon>NewsFeedItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewsFeedPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="NewsFeedPanel.Designer.cs">
+      <DependentUpon>NewsFeedPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="RssClientForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -89,8 +107,27 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RssSettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RssSettingsForm.Designer.cs">
+      <DependentUpon>RssSettingsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsForm.Designer.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewsFeedItemBox.resx">
+      <DependentUpon>NewsFeedItemBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewsFeedItem.resx">
+      <DependentUpon>NewsFeedItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewsFeedPanel.resx">
+      <DependentUpon>NewsFeedPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="RssClientForm.resx">
       <DependentUpon>RssClientForm.cs</DependentUpon>
@@ -104,6 +141,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="RssSettingsForm.resx">
+      <DependentUpon>RssSettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsForm.resx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
