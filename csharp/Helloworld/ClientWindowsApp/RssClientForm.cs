@@ -18,15 +18,8 @@ namespace ClientWindowsApp
             InitializeComponent();
             client = new RssClient.ClientMain();
             client.NewsRecieved += new EventHandler<NewsReply>(OnNewsRecieved);  //new EventHandler<string>(OnNewsRecieved);
-            //listNews.Columns.Clear();
-            //listNews.Items.Clear();
-            //listNews.View = View.Details;
+            listNews.Controls.Clear();
 
-            //listNews.Columns.Add("Latest News");
-            //listNews.Columns[0].Width = listNews.Width - 2;
-
-            //listNews.Items.Add(new ListViewItem(new string[] { " " }));
-            //listNews.Items.Clear();
             AutoScaleMode = AutoScaleMode.None;
         }
         protected override void OnPaint(PaintEventArgs e)

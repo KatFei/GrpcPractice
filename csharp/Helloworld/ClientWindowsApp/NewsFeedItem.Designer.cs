@@ -90,9 +90,9 @@ namespace ClientWindowsApp
             this.lblPublished.AutoSize = true;
             this.lblPublished.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblPublished.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPublished.Location = new System.Drawing.Point(448, 122);
+            this.lblPublished.Location = new System.Drawing.Point(453, 122);
             this.lblPublished.Name = "lblPublished";
-            this.lblPublished.Size = new System.Drawing.Size(104, 24);
+            this.lblPublished.Size = new System.Drawing.Size(99, 22);
             this.lblPublished.TabIndex = 2;
             this.lblPublished.Text = "Published: ";
             this.lblPublished.TextAlign = System.Drawing.ContentAlignment.TopRight;

@@ -42,6 +42,7 @@ namespace RssClient
         //public event EventHandler<string> NewsRecieved;
         public event EventHandler<NewsReply> NewsRecieved;
 
+        public event EventHandler<int> SettingsSaved;
         public ClientMain()
         {
             channel = new Channel("127.0.0.1:50051", ChannelCredentials.Insecure);
@@ -136,12 +137,13 @@ namespace RssClient
         }
         public async void SaveSettings(List<String> sites, List<String> tags)
         {
+            //try{ }catch { }
             if (true) //(loggedin)
             {                
                 //tmp
                 if (userid == null)
                     userid = "00000";
-                SettingsSavedReply sitesSaved, tagsSaved;
+                SettingsSavedReply sitesSaved = null, tagsSaved = null;
                 using (var call = client.SaveSites())
                 {
                     foreach (String site in sites)
@@ -153,19 +155,21 @@ namespace RssClient
                     await call.RequestStream.CompleteAsync();
                     sitesSaved = await call.ResponseAsync;
                 }
+                //using (var call = client.SaveTags())
+                //{
+                //    foreach (String tag in tags)
+                //    {
+                //        Settings set = new Settings { Field = tag, Userid = userid };
+                //        await call.RequestStream.WriteAsync(set);
+                //        //client.SaveSites(new SettingsRequest { Userid = })
+                //    }
+                //    await call.RequestStream.CompleteAsync();
+                //    tagsSaved = await call.ResponseAsync;
+                //}
+                //if((sitesSaved!=null)||tagsSaved!=null)
+                //SettingsSaved(this, sitesSaved.Count + tagsSaved.Count);
             }
-            //using (var call = client.SaveTags())
-            //{
-            //    foreach (String tag in tags)
-            //    {
-            //        Settings set = new Settings { Field = tag, Userid = username };
-            //        await call.RequestStream.WriteAsync(set);
-            //        //client.SaveSites(new SettingsRequest { Userid = })
-            //    }
-            //    await call.RequestStream.CompleteAsync();
-            //    tagsSaved = await call.ResponseAsync;
-            //}
-            //SettingsSaved(this, sitesSaved);
+
         }
         public async void GetSettings()
         {

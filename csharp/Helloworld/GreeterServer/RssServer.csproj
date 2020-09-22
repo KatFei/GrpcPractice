@@ -6,6 +6,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataBase.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="vctmp2180_941828.RssDatabase.2a0a0ff3.mdf" />
+    <None Remove="vctmp2180_941828.RssDatabase.2a0a0ff3_log.ldf" />
+    <None Remove="vctmp2180_974073.RssDatabase_log.3aceb326.ldf" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Data.SqlClient" Version="4.8.1" />
     <PackageReference Include="System.ServiceModel.Syndication" Version="4.7.0" />
   </ItemGroup>

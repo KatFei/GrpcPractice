@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RssClientForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -70,6 +71,12 @@
             this.label18 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.butBack = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.flowLayoutPanel9 = new System.Windows.Forms.FlowLayoutPanel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button5 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel2.SuspendLayout();
@@ -82,45 +89,50 @@
             this.flowLayoutPanel8.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            this.flowLayoutPanel9.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.122782F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 38.0501F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 58.83548F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.Controls.Add(this.webBrowser1, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel1, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel2, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel3, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.listNews, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.flowLayoutPanel5, 3, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 9.886548F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 90.11345F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(1483, 1154);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1483, 1214);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // webBrowser1
             // 
             this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(613, 108);
+            this.webBrowser1.Location = new System.Drawing.Point(653, 107);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(7);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(867, 953);
+            this.webBrowser1.Size = new System.Drawing.Size(773, 1011);
             this.webBrowser1.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.button1);
             this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(49, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(53, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(554, 99);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(554, 94);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
             // button1
@@ -145,25 +157,25 @@
             // 
             // flowLayoutPanel2
             // 
-            this.flowLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.flowLayoutPanel2.AutoSize = true;
             this.flowLayoutPanel2.Controls.Add(this.butLogin);
             this.flowLayoutPanel2.Controls.Add(this.lblUser);
             this.flowLayoutPanel2.Controls.Add(this.lblUsername);
             this.flowLayoutPanel2.Controls.Add(this.butSettings);
+            this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel9);
+            this.flowLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel2.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(1163, 3);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(649, 3);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(317, 99);
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(781, 94);
             this.flowLayoutPanel2.TabIndex = 3;
             // 
             // butLogin
             // 
             this.butLogin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.flowLayoutPanel2.SetFlowBreak(this.butLogin, true);
-            this.butLogin.Location = new System.Drawing.Point(209, 3);
+            this.butLogin.Location = new System.Drawing.Point(673, 3);
             this.butLogin.Name = "butLogin";
             this.butLogin.Size = new System.Drawing.Size(105, 64);
             this.butLogin.TabIndex = 1;
@@ -174,7 +186,7 @@
             // lblUser
             // 
             this.lblUser.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblUser.Location = new System.Drawing.Point(116, 0);
+            this.lblUser.Location = new System.Drawing.Point(580, 0);
             this.lblUser.Margin = new System.Windows.Forms.Padding(20, 0, 3, 0);
             this.lblUser.Name = "lblUser";
             this.lblUser.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -187,7 +199,7 @@
             // 
             this.lblUsername.AutoSize = true;
             this.flowLayoutPanel2.SetFlowBreak(this.lblUsername, true);
-            this.lblUsername.Location = new System.Drawing.Point(185, 25);
+            this.lblUsername.Location = new System.Drawing.Point(649, 25);
             this.lblUsername.Name = "lblUsername";
             this.lblUsername.Size = new System.Drawing.Size(18, 25);
             this.lblUsername.TabIndex = 2;
@@ -196,7 +208,8 @@
             // butSettings
             // 
             this.butSettings.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.butSettings.Location = new System.Drawing.Point(3, 3);
+            this.flowLayoutPanel2.SetFlowBreak(this.butSettings, true);
+            this.butSettings.Location = new System.Drawing.Point(467, 3);
             this.butSettings.Name = "butSettings";
             this.butSettings.Size = new System.Drawing.Size(107, 64);
             this.butSettings.TabIndex = 0;
@@ -211,9 +224,9 @@
             this.flowLayoutPanel3.AutoSize = true;
             this.flowLayoutPanel3.Controls.Add(this.butLoad);
             this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(1274, 1067);
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(1224, 1128);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(206, 84);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(206, 83);
             this.flowLayoutPanel3.TabIndex = 4;
             // 
             // butLoad
@@ -230,6 +243,7 @@
             // listNews
             // 
             this.listNews.AutoScroll = true;
+            this.listNews.AutoSize = true;
             this.listNews.Controls.Add(this.flListItemTemplate);
             this.listNews.Controls.Add(this.flowLayoutPanel4);
             this.listNews.Controls.Add(this.flowLayoutPanel6);
@@ -239,10 +253,10 @@
             this.listNews.Controls.Add(this.groupBox2);
             this.listNews.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listNews.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.listNews.Location = new System.Drawing.Point(49, 108);
+            this.listNews.Location = new System.Drawing.Point(53, 103);
             this.listNews.MinimumSize = new System.Drawing.Size(590, 0);
             this.listNews.Name = "listNews";
-            this.listNews.Size = new System.Drawing.Size(590, 953);
+            this.listNews.Size = new System.Drawing.Size(590, 1019);
             this.listNews.TabIndex = 5;
             this.listNews.WrapContents = false;
             // 
@@ -257,7 +271,7 @@
             this.flListItemTemplate.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flListItemTemplate.Location = new System.Drawing.Point(3, 3);
             this.flListItemTemplate.Name = "flListItemTemplate";
-            this.flListItemTemplate.Size = new System.Drawing.Size(555, 149);
+            this.flListItemTemplate.Size = new System.Drawing.Size(582, 138);
             this.flListItemTemplate.TabIndex = 0;
             // 
             // lblSubject
@@ -280,7 +294,7 @@
             this.lblSummary.Location = new System.Drawing.Point(3, 35);
             this.lblSummary.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.lblSummary.Name = "lblSummary";
-            this.lblSummary.Size = new System.Drawing.Size(549, 87);
+            this.lblSummary.Size = new System.Drawing.Size(576, 78);
             this.lblSummary.TabIndex = 1;
             this.lblSummary.Text = "Short summary: The institution of slavery turned a poor, fledgling nation into a " +
     "financial powerhouse, and the cotton plantation was. . .";
@@ -291,9 +305,9 @@
             this.lblPublished.AutoSize = true;
             this.lblPublished.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblPublished.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.lblPublished.Location = new System.Drawing.Point(448, 125);
+            this.lblPublished.Location = new System.Drawing.Point(480, 116);
             this.lblPublished.Name = "lblPublished";
-            this.lblPublished.Size = new System.Drawing.Size(104, 24);
+            this.lblPublished.Size = new System.Drawing.Size(99, 22);
             this.lblPublished.TabIndex = 2;
             this.lblPublished.Text = "Published: ";
             this.lblPublished.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -306,9 +320,9 @@
             this.flowLayoutPanel4.Controls.Add(this.label7);
             this.flowLayoutPanel4.Controls.Add(this.label8);
             this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 158);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 147);
             this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(555, 146);
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(582, 135);
             this.flowLayoutPanel4.TabIndex = 1;
             // 
             // label6
@@ -331,7 +345,7 @@
             this.label7.Location = new System.Drawing.Point(3, 32);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(549, 87);
+            this.label7.Size = new System.Drawing.Size(576, 78);
             this.label7.TabIndex = 1;
             this.label7.Text = "Short summary: The institution of slavery turned a poor, fledgling nation into a " +
     "financial powerhouse, and the cotton plantation was. . .";
@@ -342,9 +356,9 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label8.Location = new System.Drawing.Point(448, 122);
+            this.label8.Location = new System.Drawing.Point(480, 113);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(104, 24);
+            this.label8.Size = new System.Drawing.Size(99, 22);
             this.label8.TabIndex = 2;
             this.label8.Text = "Published: ";
             this.label8.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -357,9 +371,9 @@
             this.flowLayoutPanel6.Controls.Add(this.label10);
             this.flowLayoutPanel6.Controls.Add(this.label11);
             this.flowLayoutPanel6.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 310);
+            this.flowLayoutPanel6.Location = new System.Drawing.Point(3, 288);
             this.flowLayoutPanel6.Name = "flowLayoutPanel6";
-            this.flowLayoutPanel6.Size = new System.Drawing.Size(555, 146);
+            this.flowLayoutPanel6.Size = new System.Drawing.Size(582, 135);
             this.flowLayoutPanel6.TabIndex = 2;
             // 
             // label9
@@ -382,7 +396,7 @@
             this.label10.Location = new System.Drawing.Point(3, 32);
             this.label10.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(549, 87);
+            this.label10.Size = new System.Drawing.Size(576, 78);
             this.label10.TabIndex = 1;
             this.label10.Text = "Short summary: The institution of slavery turned a poor, fledgling nation into a " +
     "financial powerhouse, and the cotton plantation was. . .";
@@ -393,9 +407,9 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label11.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label11.Location = new System.Drawing.Point(448, 122);
+            this.label11.Location = new System.Drawing.Point(480, 113);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(104, 24);
+            this.label11.Size = new System.Drawing.Size(99, 22);
             this.label11.TabIndex = 2;
             this.label11.Text = "Published: ";
             this.label11.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -408,9 +422,9 @@
             this.flowLayoutPanel7.Controls.Add(this.label13);
             this.flowLayoutPanel7.Controls.Add(this.label14);
             this.flowLayoutPanel7.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel7.Location = new System.Drawing.Point(3, 462);
+            this.flowLayoutPanel7.Location = new System.Drawing.Point(3, 429);
             this.flowLayoutPanel7.Name = "flowLayoutPanel7";
-            this.flowLayoutPanel7.Size = new System.Drawing.Size(555, 146);
+            this.flowLayoutPanel7.Size = new System.Drawing.Size(582, 135);
             this.flowLayoutPanel7.TabIndex = 3;
             // 
             // label12
@@ -433,7 +447,7 @@
             this.label13.Location = new System.Drawing.Point(3, 32);
             this.label13.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(549, 87);
+            this.label13.Size = new System.Drawing.Size(576, 78);
             this.label13.TabIndex = 1;
             this.label13.Text = "Short summary: The institution of slavery turned a poor, fledgling nation into a " +
     "financial powerhouse, and the cotton plantation was. . .";
@@ -444,9 +458,9 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(448, 122);
+            this.label14.Location = new System.Drawing.Point(480, 113);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(104, 24);
+            this.label14.Size = new System.Drawing.Size(99, 22);
             this.label14.TabIndex = 2;
             this.label14.Text = "Published: ";
             this.label14.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -459,9 +473,9 @@
             this.flowLayoutPanel8.Controls.Add(this.label16);
             this.flowLayoutPanel8.Controls.Add(this.label17);
             this.flowLayoutPanel8.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel8.Location = new System.Drawing.Point(3, 614);
+            this.flowLayoutPanel8.Location = new System.Drawing.Point(3, 570);
             this.flowLayoutPanel8.Name = "flowLayoutPanel8";
-            this.flowLayoutPanel8.Size = new System.Drawing.Size(555, 146);
+            this.flowLayoutPanel8.Size = new System.Drawing.Size(555, 144);
             this.flowLayoutPanel8.TabIndex = 4;
             // 
             // label15
@@ -496,9 +510,9 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label17.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label17.Location = new System.Drawing.Point(448, 122);
+            this.label17.Location = new System.Drawing.Point(453, 122);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(104, 24);
+            this.label17.Size = new System.Drawing.Size(99, 22);
             this.label17.TabIndex = 2;
             this.label17.Text = "Published: ";
             this.label17.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -509,7 +523,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(3, 766);
+            this.groupBox1.Location = new System.Drawing.Point(3, 720);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(551, 139);
             this.groupBox1.TabIndex = 5;
@@ -524,7 +538,7 @@
             this.label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label4.Location = new System.Drawing.Point(447, 115);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(104, 24);
+            this.label4.Size = new System.Drawing.Size(99, 22);
             this.label4.TabIndex = 3;
             this.label4.Text = "Published: ";
             this.label4.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -559,7 +573,7 @@
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.label19);
-            this.groupBox2.Location = new System.Drawing.Point(3, 911);
+            this.groupBox2.Location = new System.Drawing.Point(3, 865);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(551, 139);
             this.groupBox2.TabIndex = 6;
@@ -574,7 +588,7 @@
             this.label5.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.label5.Location = new System.Drawing.Point(447, 115);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(104, 24);
+            this.label5.Size = new System.Drawing.Size(99, 22);
             this.label5.TabIndex = 3;
             this.label5.Text = "Published: ";
             this.label5.TextAlign = System.Drawing.ContentAlignment.BottomRight;
@@ -615,12 +629,84 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Latest News";
             // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.Controls.Add(this.butBack);
+            this.flowLayoutPanel5.Controls.Add(this.button3);
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(1436, 103);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(44, 191);
+            this.flowLayoutPanel5.TabIndex = 7;
+            // 
+            // butBack
+            // 
+            this.butBack.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.butBack.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel5.SetFlowBreak(this.butBack, true);
+            this.butBack.Image = global::ClientWindowsApp.Properties.Resources.left_filled_crop_tin_tin_up;
+            this.butBack.Location = new System.Drawing.Point(3, 3);
+            this.butBack.Margin = new System.Windows.Forms.Padding(3, 3, 3, 40);
+            this.butBack.Name = "butBack";
+            this.butBack.Size = new System.Drawing.Size(41, 71);
+            this.butBack.TabIndex = 6;
+            this.butBack.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel5.SetFlowBreak(this.button3, true);
+            this.button3.Image = global::ClientWindowsApp.Properties.Resources.left_filled_crop_tin_tin_down;
+            this.button3.Location = new System.Drawing.Point(3, 117);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(41, 71);
+            this.button3.TabIndex = 7;
+            this.button3.UseVisualStyleBackColor = true;
+            // 
+            // flowLayoutPanel9
+            // 
+            this.flowLayoutPanel9.Controls.Add(this.button4);
+            this.flowLayoutPanel9.Controls.Add(this.button5);
+            this.flowLayoutPanel2.SetFlowBreak(this.flowLayoutPanel9, true);
+            this.flowLayoutPanel9.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
+            this.flowLayoutPanel9.Location = new System.Drawing.Point(0, 3);
+            this.flowLayoutPanel9.Name = "flowLayoutPanel9";
+            this.flowLayoutPanel9.Size = new System.Drawing.Size(461, 86);
+            this.flowLayoutPanel9.TabIndex = 8;
+            this.flowLayoutPanel9.WrapContents = false;
+            // 
+            // button4
+            // 
+            this.button4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel9.SetFlowBreak(this.button4, true);
+            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
+            this.button4.Location = new System.Drawing.Point(5, 45);
+            this.button4.Margin = new System.Windows.Forms.Padding(40, 45, 5, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(71, 41);
+            this.button4.TabIndex = 6;
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button5
+            // 
+            this.button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.button5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.flowLayoutPanel9.SetFlowBreak(this.button5, true);
+            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
+            this.button5.Location = new System.Drawing.Point(119, 45);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(71, 41);
+            this.button5.TabIndex = 7;
+            this.button5.UseVisualStyleBackColor = true;
+            // 
             // RssClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1489, 1160);
+            this.ClientSize = new System.Drawing.Size(1489, 1220);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MinimumSize = new System.Drawing.Size(1200, 600);
             this.Name = "RssClientForm";
             this.Padding = new System.Windows.Forms.Padding(3);
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -648,6 +734,8 @@
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel9.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -699,6 +787,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Button butBack;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel9;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
     }
 }
 

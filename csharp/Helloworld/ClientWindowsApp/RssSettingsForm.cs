@@ -34,12 +34,14 @@ namespace ClientWindowsApp
             tags = new List<String>();
             //PopulateDataGridView();
             //listSites.MultiSelect = false;
-            tags.Add("Some tag");
+            //tags.Add("Some tag");
             listSites.MultiSelect = false;
-            listSites.DataSource = sites;
+            //listSites.DataSource = sites;
             //listTags.BindingContext =  tags.Cast<String>().Select(tag => new ListViewItem(tag));
-            listTags.Items.AddRange(tags.Cast<String>().Select(tag => new ListViewItem(tag)).ToArray());
-            listTags.Items.Add(tags[0]);
+            listTags.Items.Clear();
+            if (tags.Count > 0) 
+                listTags.Items.AddRange(tags.Cast<String>().Select(tag => new ListViewItem(tag)).ToArray());
+            //listTags.Items.Add(tags[0]);
         }
         public RssSettingsForm(ClientMain client)
         {
@@ -49,12 +51,11 @@ namespace ClientWindowsApp
             //загрузить настройки из бд
             sites = new List<String>();
             tags = new List<String>();
-            tags.Add("Some tag");
             listSites.MultiSelect = false;
             listSites.DataSource = sites;
-            //listTags.BindingContext =  tags.Cast<String>().Select(tag => new ListViewItem(tag));
-            listTags.Items.AddRange(tags.Cast<String>().Select(tag => new ListViewItem(tag)).ToArray());
-            listTags.Items.Add(tags[0]);
+            listTags.Items.Clear();
+            if (tags.Count>0)
+                listTags.Items.AddRange(tags.Cast<String>().Select(tag => new ListViewItem(tag)).ToArray());
         }
 
 
@@ -137,6 +138,60 @@ namespace ClientWindowsApp
             //listTags.BindingContext =  tags.Cast<String>().Select(tag => new ListViewItem(tag));
             listTags.Items.AddRange(tags.Cast<String>().Select(tag => new ListViewItem(tag)).ToArray());
         }
+
+        private void butAddSite_Click(object sender, EventArgs e)
+        {
+            if (tbSite.Text.Length > 1)
+            {
+                if (!sites.Contains(tbSite.Text))   //listTags.Items.ContainsKey(tbTag.Text)
+                {
+                    sites.Add(tbSite.Text);
+                    listSites.Rows.Add(new string[] { tbSite.Text });
+                    tbSite.Text = "";
+                }
+                else lblSiteExist.Text = "Site already added";
+                // на textChanged label.Text = ""
+                
+            }
+        }
+
+        private void butAddTag_Click(object sender, EventArgs e)
+        {
+            if (tbTag.Text.Length > 1)
+            {
+                if(listTags.FindItemWithText(tbTag.Text)==null)   //listTags.Items.ContainsKey(tbTag.Text)
+                {   
+                    listTags.Items.Add(tbTag.Text);
+                    tbTag.Text = "";
+                }
+                else lblTagExist.Text = "Tag already added";
+            }
+        }
+        private void tbSite_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                if (tbTag.Text != "")
+                    butAddSite_Click(sender, e);
+        }
+
+        private void tbSite_Click(object sender, EventArgs e)
+        {
+            lblSiteExist.Text = "";
+        }
+
+        private void tbTag_Click(object sender, EventArgs e)
+        {
+            lblTagExist.Text = "";
+        }
+
+        private void tbTag_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //if (e.)
+            //    if (tbTag.Text != "")
+            //        butAddSite_Click(sender, e);
+        }
+
+
 
         //private void InitializeComponent()
         //{

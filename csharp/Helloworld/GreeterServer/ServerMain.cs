@@ -127,25 +127,35 @@ namespace GreeterServer
         public override async Task<SettingsSavedReply> SaveSites(Grpc.Core.IAsyncStreamReader<Settings> requestStream,
     Grpc.Core.ServerCallContext context)
         {
-            int savedCount = 0;
-            bool nextExist = await requestStream.MoveNext();
-            String userid = requestStream.Current.Userid;
-            List<String> settings = new List<String>();
-
-            //settings.Add(requestStream.Current.Field);
-            //var stopwatch = new System.Diagnostics.Stopwatch();
-            //stopwatch.Start();
-
-            do
+            int savedCount = -1;
+            try
             {
-                settings.Add(requestStream.Current.Field);
-                nextExist = await requestStream.MoveNext();
-            } while (nextExist);
+                bool nextExist = await requestStream.MoveNext();
+                String userid = requestStream.Current.Userid;
+                List<String> settings = new List<String>();
 
-            //stopwatch.Stop();
+                //settings.Add(requestStream.Current.Field);
+                //var stopwatch = new System.Diagnostics.Stopwatch();
+                //stopwatch.Start();
 
-            savedCount = db.SetUserSettings(userid, settings, "site");
-            Console.WriteLine(savedCount);
+                do
+                {
+                    settings.Add(requestStream.Current.Field);
+                    nextExist = await requestStream.MoveNext();
+                } while (nextExist);
+
+                //stopwatch.Stop();
+
+                savedCount = db.SetUserSettings(userid, settings, "site");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("\nServer: Error while adding user settings.\n" + e.Message);
+            }
+            finally {
+                Console.WriteLine(savedCount);
+            }
+            
             return new SettingsSavedReply { Count = savedCount };
         }
         public override async Task LoadSitesList(SettingsRequest request,
@@ -295,9 +305,10 @@ namespace GreeterServer
             }
             catch (Exception e)
             {
-                Console.WriteLine("\nError while reading RSS-feed " + url + ".\n+" + e.Message);
+                Console.WriteLine("\nError while reading RSS-feed " + url + ".\n" + e.Message);
             }
-            finally { reader.Close(); }
+            finally { if(reader!=null)
+                        reader.Close(); }
             return customfeed;
         }
 

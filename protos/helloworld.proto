@@ -73,7 +73,7 @@ message Settings {
   //string tag = 2;
 }
 message SettingsSavedReply {
-  int64 count = 1;
+  int32 count = 1;
 }
 
 message NewsRequest {

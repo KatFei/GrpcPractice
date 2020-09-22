@@ -34,22 +34,23 @@ namespace RssServer
         public string AddUser(string username, string password) {
 
             string userid = null;
+            SqlTransaction transaction = null;
             try
             {
                 if (Connect())
                 {
-                    SqlTransaction transaction = connection.BeginTransaction();
+                    transaction = connection.BeginTransaction();
                     SqlCommand sqlCheck = new SqlCommand("SELECT COUNT(id) FROM users", connection, transaction);
                     String query = "SELECT MAX(id) FROM users";
                     SqlCommand sql = new SqlCommand(query, connection, transaction);
                     //берем максимальный userid +1 sequence trigger
 
                     string maxid = sqlCheck.ExecuteScalar().ToString() != "0" ? sql.ExecuteScalar().ToString() : "00000";
-                    userid = (Int64.Parse(maxid) + 1).ToString();   //maxid ==""?"00000":
+                    userid = (Int64.Parse(maxid) + 1).ToString().PadLeft(5, '0');   //maxid ==""?"00000":
                     query = "INSERT INTO users VALUES (\'" + userid + "\', \'" + username + "\',\'" + password + "\'); COMMIT;";
                     sql.CommandText = query;
                     sql.ExecuteNonQuery();
-                    transaction.Commit();
+                    Console.WriteLine("User "+username+"added");
                 }
             }
             catch (Exception e)
@@ -57,15 +58,23 @@ namespace RssServer
                 Console.WriteLine("Error while adding user to DB.\n+" +
                             e.Message);
             }
+            finally {
+                if ((transaction != null) && (transaction.Connection != null))
+                { transaction.Commit(); Console.WriteLine("Committed"); }
+            }
             return userid;
         }
         public string Authenticate(string username, string password) {
             string userid = null;
-            if (Connect()){
+            //SqlTransaction transaction = null;
+            SqlDataReader reader = null;
+            try
+            {
+                if (Connect()){
                 String query = "SELECT id, password FROM users WHERE username = \'" + username+"\'";
                 SqlCommand sql = new SqlCommand(query,connection);
                 //брать 1 столбец и преобразовывать сразу в List
-                SqlDataReader reader = sql.ExecuteReader();
+                reader = sql.ExecuteReader();
                 reader.Read();
                 Console.WriteLine("Username  "+ username);
                 if ((reader.HasRows)&&(
@@ -80,7 +89,17 @@ namespace RssServer
                     userid = reader[0].ToString();
                     //return true;
                 }
-                reader.Close();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error while reading authentication data from DB.\n+" +
+                            e.Message);
+            }
+            finally
+            {
+                if ((reader != null) && !reader.IsClosed)
+                    reader.Close();
             }
             return userid;
         }
@@ -116,29 +135,47 @@ namespace RssServer
         public int SetUserSettings(string userid, List<String> settings, string type = "site") //enum Settings.Type site|tag
         {
             int count = 0;
-
+            SqlTransaction transaction = null;
             try
             {
                 if (Connect())
                 {
-                    SqlTransaction transaction = connection.BeginTransaction();
+                    transaction = connection.BeginTransaction();
                     foreach (String setting in settings)
                     {
-                            String query = "INSERT INTO " + type + "s VALUES (\'" + userid + "\', \'" + setting + "\',null,null);";  // COMMIT;
-                            SqlCommand sql = new SqlCommand(query, connection, transaction);
-                            //брать 1 столбец и преобразовывать сразу в List
-                            count += sql.ExecuteNonQuery();
-                            Console.WriteLine("Added");
-                    }
-                    SqlCommand sqlC = new SqlCommand("COMMIT;", connection, transaction);
-                    //брать 1 столбец и преобразовывать сразу в List
-                    sqlC.ExecuteNonQuery();
-                    Console.WriteLine("Committed");
+                        SqlCommand sqlC = new SqlCommand("SELECT id, "+ type +" FROM " + type + "s " +
+                            "WHERE " +
+                            "id = \'" + userid + "\' AND "+ type +" =\'" + setting + "\';", connection, transaction);
+                        Console.WriteLine("Query: " + "SELECT id, " + type + " FROM " + type + "s " +
+                            "WHERE " +
+                            "id = \'" + userid + "\' AND " + type + " =\'" + setting + "\';");
+
+                        //брать 1 столбец и преобразовывать сразу в List
+                        using (SqlDataReader reader = sqlC.ExecuteReader())
+                        {
+                            if (!reader.HasRows)
+                            {
+                                reader.Close();
+                                String query = "INSERT INTO " + type + "s VALUES (\'" + userid + "\', \'" + setting + "\',null,null);";  // COMMIT;
+                                SqlCommand sql = new SqlCommand(query, connection, transaction);
+                                //брать 1 столбец и преобразовывать сразу в List
+                                count += sql.ExecuteNonQuery();
+                                Console.WriteLine("Added: " + setting);
+                            }
+                            else
+                                Console.WriteLine("Already exists: " + setting);
+                        }
+                    }                    
                 }
 
             }
             catch(Exception e) { Console.WriteLine("\nError while adding settings to DB.\n+" +
                 e.Message); }
+            finally
+            {
+                if ((transaction != null)&&(transaction.Connection!=null))
+                { transaction.Commit(); Console.WriteLine("Committed");}
+            }
             return count;
         }
 

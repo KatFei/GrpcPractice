@@ -113,10 +113,11 @@
     <Compile Include="RssSettingsForm.Designer.cs">
       <DependentUpon>RssSettingsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SettingsForm.cs">
-      <SubType>Form</SubType>
+    <Compile Include="SettingsForm1.Designer.cs">
+      <DependentUpon>SettingsForm.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
-    <Compile Include="SettingsForm.Designer.cs" />
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -140,11 +141,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="RssSettingsForm.resx">
       <DependentUpon>RssSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SettingsForm.resx" />
+    <EmbeddedResource Include="SettingsForm.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SettingsForm1.Designer.cs</LastGenOutput>
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -164,6 +170,27 @@
       <Project>{13b6dfc8-f5f6-4cc2-99df-57a7cf042033}</Project>
       <Name>GrpcRssReader</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_filled.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_filled_crop_min.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_filled_crop_tin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_filled_crop_tin_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_filled_crop_tin_down_gr.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_filled_crop_tin_tin_up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\left_filled_crop_tin_tin_down.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Grpc.Core.2.30.0\build\net45\Grpc.Core.targets" Condition="Exists('..\packages\Grpc.Core.2.30.0\build\net45\Grpc.Core.targets')" />

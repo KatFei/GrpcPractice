@@ -46,4 +46,5 @@ namespace GrpcRssReader.Library
             return new SyndicationItem(newsReply.Subject, newsReply.Summary, new Uri(newsReply.Url), newsReply.Id, DateTime.Parse(newsReply.Date));
         }
     }
+    
 }
